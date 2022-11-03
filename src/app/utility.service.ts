@@ -25,6 +25,8 @@ export class UtilityService {
                 document.body.style.margin = `0 ${val}rem`;
             } else if (key == 'letterSpacing') {
                 document.body.style.letterSpacing = val + 'px';
+            } else if (key == 'invert') {
+                document.body.style.filter = `invert(${val}%)`;
             }
         }
     }

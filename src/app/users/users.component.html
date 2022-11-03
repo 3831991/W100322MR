@@ -2,6 +2,8 @@
 
 <p *ngIf="!users.length">אין משתמשים</p>
 
+<input type="search" [(ngModel)]="searchVal" placeholder="חיפוש">
+
 <table *ngIf="users.length">
     <thead>
         <tr>
@@ -17,14 +19,11 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let u of users; let i = index">
-            <td [style.background-color]="'hsl(' + i*30 + ', 63%, 35%)'">
+        <tr *ngFor="let u of users | search : searchVal; let i = index">
+            <td [style.color]="'hsl(' + i*30 + ', 63%, 35%)'">
                 {{ i + 1 }}
-                <!-- מוסיף/מסיר את האלמנט -->
-                <span *ngIf="u.isActive"> - פעיל</span>
-                <!-- אופציה נוספת -->
-                <!-- רק מסתיר את האלמנט -->
-                <span [hidden]="u.isActive"> - לא פעיל</span>
+                <span *ngIf="!u.isBlocked"> - פעיל</span>
+                <span *ngIf="u.isBlocked"> - לא פעיל</span>
             </td>
             <td><input type="text" [(ngModel)]="u.firstName"></td>
             <td><input type="text" [(ngModel)]="u.lastName"></td>
@@ -35,9 +34,6 @@
             <td [class.green]="u.isBlocked" [class.red]="!u.isBlocked" (click)="toggle(u)">
                 <span [class.isActive]="u.isActive">{{ u.isBlocked ? 'v' : 'x' }}</span>
             </td>
-            <!-- <td [class.green]="u.isBlocked" [class.red]="!u.isBlocked" (click)="u.isActive = !u.isActive">
-                <span [class.isActive]="u.isActive">{{ u.isBlocked ? 'v' : 'x' }}</span>
-            </td> -->
         </tr>
     </tbody>
 </table>

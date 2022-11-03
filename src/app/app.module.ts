@@ -15,6 +15,8 @@ import { AlertComponent } from './alert/alert.component';
 import { UtilityService } from './utility.service';
 import { RangeComponent } from './range/range.component';
 import { BrightnessComponent } from './brightness/brightness.component';
+import { SearchPipe } from './search.pipe';
+import { MyNumberPipe } from './my-number.pipe';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { BrightnessComponent } from './brightness/brightness.component';
         ContactComponent,
         AlertComponent,
         RangeComponent,
-        BrightnessComponent
+        BrightnessComponent,
+        SearchPipe,
+        MyNumberPipe
     ],
     imports: [
         BrowserModule,

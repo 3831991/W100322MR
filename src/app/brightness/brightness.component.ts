@@ -12,6 +12,7 @@ export class BrightnessComponent implements OnInit {
         { field: 'fontSize', title: 'גודל טקסט', value: 10, min: 10, max: 50 },
         { field: 'margin', title: 'ריווח פנימי של האתר', value: 5, min: 1, max: 10 },
         { field: 'letterSpacing', title: 'ריווח של האותיות', value: 1, min: 0, max: 5 },
+        { field: 'invert', title: 'היפוך צבעים', value: 0, min: 0, max: 100 },
     ];
 
     change(item: Setting, val: number) {
@@ -33,8 +34,10 @@ export class BrightnessComponent implements OnInit {
 
 export interface Setting {
     title: string;
-    field: string;
+    field: Styles;
     min: number;
     max: number;
     value: number;
 }
+
+export type Styles = 'level'| 'fontSize' | 'margin' | 'letterSpacing' | 'invert';

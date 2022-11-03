@@ -8,6 +8,7 @@ import { User } from './users.interface';
     styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+    searchVal: string;
     users = users;
 
     toggle(u: User) {
