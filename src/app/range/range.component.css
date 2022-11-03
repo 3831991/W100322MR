@@ -1,0 +1,18 @@
+div {
+    padding: 16px 0;
+    display: flex;
+}
+
+input[type=number] {
+    width: 10%;
+    padding: 6px;
+    max-width: 60px;
+    min-width: 40px;
+    margin-left: 12px;
+    border-radius: 6px;
+    border: 2px solid #0075ff;
+}
+
+input[type=range] {
+    width: 100%;
+}

@@ -1,0 +1,37 @@
+<div class="frame">
+    <h2>צור קשר</h2>
+
+    <div class="field">
+        <label>שם מלא:</label>
+        <input type="text" [(ngModel)]="name">
+    </div>
+
+    <div class="field">
+        <label>טלפון:</label>
+        <input type="tel" [(ngModel)]="phone">
+    </div>
+
+    <div class="field">
+        <label>אימייל:</label>
+        <input type="email" [(ngModel)]="email">
+    </div>
+
+    <div class="field">
+        <label>רמת שמחה:</label>
+        <app-range [(value)]="happiness" [min]="0" [max]="100"></app-range>
+    </div>
+
+    <div class="field">
+        <label>רמת פחד:</label>
+        <app-range [(value)]="fearLevel" [min]="10" [max]="80"></app-range>
+    </div>
+
+    <div class="field">
+        <label>תוכן:</label>
+        <textarea cols="30" rows="10" [(ngModel)]="content"></textarea>
+    </div>
+
+    <div class="field">
+        <button (click)="send()">שלח</button>
+    </div>
+</div>

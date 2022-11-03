@@ -1,0 +1,4 @@
+<div *ngFor="let s of settings">
+    <p>{{ s.title }}:</p>
+    <app-range [min]="s.min" [max]="s.max" [(value)]="s.value" (valueChange)="change(s, $event)"></app-range>
+</div>

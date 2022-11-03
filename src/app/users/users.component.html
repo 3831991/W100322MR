@@ -1,0 +1,43 @@
+<h1>טבלת משתמשים <small>({{ users.length }})</small></h1>
+
+<p *ngIf="!users.length">אין משתמשים</p>
+
+<table *ngIf="users.length">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>שם פרטי</th>
+            <th>שם משפחה</th>
+            <th>שם מלא</th>
+            <th>אימייל</th>
+            <th>טלפון</th>
+            <th>תאריך לידה</th>
+            <th>האם חסום?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let u of users; let i = index">
+            <td [style.background-color]="'hsl(' + i*30 + ', 63%, 35%)'">
+                {{ i + 1 }}
+                <!-- מוסיף/מסיר את האלמנט -->
+                <span *ngIf="u.isActive"> - פעיל</span>
+                <!-- אופציה נוספת -->
+                <!-- רק מסתיר את האלמנט -->
+                <span [hidden]="u.isActive"> - לא פעיל</span>
+            </td>
+            <td><input type="text" [(ngModel)]="u.firstName"></td>
+            <td><input type="text" [(ngModel)]="u.lastName"></td>
+            <td>{{ u.firstName }} {{ u.lastName }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.phone }}</td>
+            <td>{{ u.birthday | date : 'dd/MM/yyyy' }}</td>
+            <td [class.green]="u.isBlocked" [class.red]="!u.isBlocked" (click)="toggle(u)">
+                <span [class.isActive]="u.isActive">{{ u.isBlocked ? 'v' : 'x' }}</span>
+            </td>
+            <!-- <td [class.green]="u.isBlocked" [class.red]="!u.isBlocked" (click)="u.isActive = !u.isActive">
+                <span [class.isActive]="u.isActive">{{ u.isBlocked ? 'v' : 'x' }}</span>
+            </td> -->
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #037d9b;
+    color: white;
+}
+
+th,
+td {
+    padding: 6px 8px;
+    width: 10%;
+    white-space: nowrap;
+}
+
+tr:nth-child(even) {
+    background-color: #ccc;
+}
+
+.green {
+    color: #73b511;
+}
+
+.red {
+    color: #aa0101;
+}
+
+td:last-child>span {
+    transition: 0.3s;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.isActive {
+    scale: 25;
+    background-color: white;
+    border-radius: 50%;
+    line-height: 0.8;
+    padding: 0 3px 2px 3px;
+    box-shadow: 0 0 2px 2px;
+}

@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let s of students; let i = index" (click)="removeStudent(i)">{{ s }}</li>
+</ul>
+
+<input [(ngModel)]="student" placeholder="תלמיד חדש" (keyup.enter)="addStudent()">

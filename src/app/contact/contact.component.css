@@ -1,0 +1,49 @@
+.frame {
+    width: 400px;
+    max-width: 100%;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 6px #00000085;
+    padding: 12px;
+}
+
+.field {
+    padding: 8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 3px;
+    color: #008080;
+}
+
+input,
+textarea {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #616161;
+}
+
+h2 {
+    text-align: center;
+    color: #4e4e4e;
+}
+
+button {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    background: teal;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    box-shadow: 0 0 6px #94949485;
+    background: #009c9c;
+}

@@ -1,0 +1,45 @@
+.alertFrame {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #00000080;
+}
+
+.alert {
+    min-height: 200px;
+    width: 500px;
+    max-width: 100%;
+    background-color: white;
+    box-shadow: 0 0 8px #0000007a;
+    border-radius: 6px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.content {
+    padding: 8px;
+    text-align: center;
+    font-size: 22px;
+    white-space: pre-wrap;
+}
+
+button.close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    padding: 8px 12px;
+    color: gray;
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+button.close:hover {
+    transform: rotate(360deg);
+    transition: 0.6s;
+}

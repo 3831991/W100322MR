@@ -1,0 +1,8 @@
+<ol>
+    <li *ngFor="let x of myList; let i = index">{{ x }}</li>
+</ol>
+
+<input [(ngModel)]="product" placeholder="מוצר חדש" (keyup.enter)="addProduct()">
+<!-- <input [ngModel]="product" placeholder="מוצר חדש" (keyup.enter)="addProduct()"> -->
+
+<p><b>סה"כ פריטים:</b> {{ myList.length }}</p>

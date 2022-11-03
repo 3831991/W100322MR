@@ -1,0 +1,3 @@
+<nav>
+    <a *ngFor="let x of menu" [class.active]="active == x.route" [routerLink]="x.route">{{ x.title }}</a>
+</nav>
