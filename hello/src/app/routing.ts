@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { BrightnessComponent } from "./brightness/brightness.component";
+import { ClientsComponent } from "./clients/clients.component";
 import { ContactComponent } from "./contact/contact.component";
 import { HomeComponent } from "./home/home.component";
 import { ListComponent } from "./list/list.component";
@@ -11,4 +12,5 @@ export const routes: Routes = [
     { path: 'list', component: ListComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'brightness', component: BrightnessComponent },
+    { path: 'clients', component: ClientsComponent },
 ];

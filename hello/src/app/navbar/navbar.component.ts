@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
         { route: '/users', title: 'משתמשים' },
         { route: '/contact', title: 'צור קשר' },
         { route: '/brightness', title: 'נגישות' },
+        { route: '/clients', title: 'לקוחות' },
     ];
 
     constructor(private router: Router) {

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,6 +18,7 @@ import { RangeComponent } from './range/range.component';
 import { BrightnessComponent } from './brightness/brightness.component';
 import { SearchPipe } from './search.pipe';
 import { MyNumberPipe } from './my-number.pipe';
+import { ClientsComponent } from './clients/clients.component';
 
 @NgModule({
     declarations: [
@@ -31,11 +33,13 @@ import { MyNumberPipe } from './my-number.pipe';
         RangeComponent,
         BrightnessComponent,
         SearchPipe,
-        MyNumberPipe
+        MyNumberPipe,
+        ClientsComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
+        HttpClientModule,
         RouterModule.forRoot(routes),
     ],
     providers: [
