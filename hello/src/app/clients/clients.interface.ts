@@ -7,4 +7,5 @@ export interface Client {
     phone: string;
     email: string;
     city: string;
+    isEditState?: boolean;
 }

@@ -16,6 +16,10 @@ export class SearchPipe implements PipeTransform {
 
         return arr.filter(obj => {
             for (const key in obj) {
+                if (!obj[key]) {
+                    continue;
+                }
+
                 const val: string = obj[key].toString().toLowerCase();
 
                 if (val.includes(searchVal.toLowerCase())) {

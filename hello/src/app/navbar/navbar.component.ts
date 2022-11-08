@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
         this.router.events.subscribe(ev => {
             if (ev instanceof NavigationStart) {
                 this.active = ev.url;
+                
             }
         });
 

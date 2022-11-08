@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Client } from './clients/clients.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -31,5 +32,14 @@ export class UtilityService {
         }
     }
 
-    constructor() { }
+    sum(numbers: number[]) {
+        return numbers.reduce((num, res) => res += num, 0);
+    }
+
+    reflaction<T>(obj: T): T {
+        return JSON.parse(JSON.stringify(obj));
+    }
+
+    constructor() {
+    }
 }

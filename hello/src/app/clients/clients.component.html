@@ -1,0 +1,60 @@
+<h1>ניהול לקוחות <small>({{ clients.length }})</small></h1>
+
+<p *ngIf="!clients.length">אין לקוחות</p>
+
+<input type="search" [(ngModel)]="searchVal" placeholder="חיפוש">
+
+<table *ngIf="clients.length">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>שם פרטי</th>
+            <th>שם משפחה</th>
+            <th>עיר</th>
+            <th>אימייל</th>
+            <th>טלפון</th>
+            <th>תאריך לידה</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr style="background: aqua;">
+            <td>חדש</td>
+            <td><input [(ngModel)]="newClient.firstName" type="text"></td>
+            <td><input [(ngModel)]="newClient.lastName" type="text"></td>
+            <td><input [(ngModel)]="newClient.city" type="text"></td>
+            <td><input [(ngModel)]="newClient.email" type="email"></td>
+            <td><input [(ngModel)]="newClient.phone" type="tel"></td>
+            <td><input [(ngModel)]="newClient.birthday" type="date"></td>
+            <td><button (click)="add()" [disabled]="!isValid()">הוסף</button></td>
+        </tr>
+    </tbody>
+
+    <tbody>
+        <tr *ngFor="let u of clients | search : searchVal; let i = index">
+            <td>{{ i + 1 }}</td>
+
+            <td *ngIf="!u.isEditState">{{ u.firstName }}</td>
+            <td *ngIf="!u.isEditState">{{ u.lastName }}</td>
+            <td *ngIf="!u.isEditState">{{ u.city }}</td>
+            <td *ngIf="!u.isEditState">{{ u.email }}</td>
+            <td *ngIf="!u.isEditState">{{ u.phone }}</td>
+            <td *ngIf="!u.isEditState">{{ u.birthday | date : 'dd/MM/yyyy' }}</td>
+
+            <td *ngIf="u.isEditState"><input [(ngModel)]="u.firstName" type="text"></td>
+            <td *ngIf="u.isEditState"><input [(ngModel)]="u.lastName" type="text"></td>
+            <td *ngIf="u.isEditState"><input [(ngModel)]="u.city" type="text"></td>
+            <td *ngIf="u.isEditState"><input [(ngModel)]="u.email" type="email"></td>
+            <td *ngIf="u.isEditState"><input [(ngModel)]="u.phone" type="tel"></td>
+            <td *ngIf="u.isEditState"><input [(ngModel)]="u.birthday" type="date"></td>
+
+            <td>
+                <button *ngIf="u.isEditState" (click)="update(u)">שמירה</button>
+                <button *ngIf="u.isEditState" (click)="u.isEditState = false">ביטול</button>
+                <button *ngIf="!u.isEditState" (click)="u.isEditState = true">עריכה</button>
+                <button class="remove" (click)="remove(u)">x</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
