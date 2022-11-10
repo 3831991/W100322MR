@@ -4,6 +4,8 @@ import { ClientsComponent } from "./clients/clients.component";
 import { ContactComponent } from "./contact/contact.component";
 import { HomeComponent } from "./home/home.component";
 import { ListComponent } from "./list/list.component";
+import { SupportManageComponent } from "./support-manage/support-manage.component";
+import { SupportComponent } from "./support/support.component";
 import { UsersComponent } from "./users/users.component";
 
 export const routes: Routes = [
@@ -13,4 +15,6 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'brightness', component: BrightnessComponent },
     { path: 'clients', component: ClientsComponent },
+    { path: 'support', component: SupportComponent },
+    { path: 'support-manage/:status', component: SupportManageComponent },
 ];

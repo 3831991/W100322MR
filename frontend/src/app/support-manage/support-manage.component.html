@@ -1,0 +1,33 @@
+<h1>ניהול פניות <small>({{ support.length }})</small></h1>
+
+<p *ngIf="!support.length">אין פניות שירות</p>
+
+<table *ngIf="support.length">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>זמן</th>
+            <th>שם מלא</th>
+            <th>אימייל</th>
+            <th>טלפון</th>
+            <th>תוכן</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let s of support; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ s.time | date : 'dd/MM/yy HH:mm' }}</td>
+            <td>{{ s.fullName }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.content }}</td>
+
+            <td>
+                <button (click)="complete(s)">טופל</button>
+                <button class="remove" (click)="remove(s)">x</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

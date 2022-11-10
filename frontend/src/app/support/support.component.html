@@ -1,0 +1,27 @@
+<form class="frame" [formGroup]="form">
+    <h2>צור קשר</h2>
+
+    <div class="field">
+        <label>שם מלא:</label>
+        <input type="text" formControlName="fullName">
+    </div>
+
+    <div class="field">
+        <label>טלפון:</label>
+        <input type="tel" formControlName="phone">
+    </div>
+
+    <div class="field">
+        <label>אימייל:</label>
+        <input type="email" formControlName="email">
+    </div>
+
+    <div class="field">
+        <label>תוכן הפנייה:</label>
+        <textarea formControlName="content" cols="30" rows="10"></textarea>
+    </div>
+
+    <div class="field">
+        <button (click)="send()" [disabled]="!form.valid">שלח</button>
+    </div>
+</form>

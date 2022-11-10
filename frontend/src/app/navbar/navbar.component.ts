@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { Menu } from './navbar.interface';
 
 @Component({
@@ -18,6 +18,9 @@ export class NavbarComponent implements OnInit {
         { route: '/contact', title: 'צור קשר' },
         { route: '/brightness', title: 'נגישות' },
         { route: '/clients', title: 'לקוחות' },
+        { route: '/support', title: 'שירות לקוחות' },
+        { route: '/support-manage/opened', title: 'פניות פתוחות' },
+        { route: '/support-manage/completed', title: 'פניות סגורות' },
     ];
 
     constructor(private router: Router) {

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
 import { StudentsComponent } from './students/students.component';
 import { UsersComponent } from './users/users.component';
@@ -19,6 +19,8 @@ import { BrightnessComponent } from './brightness/brightness.component';
 import { SearchPipe } from './search.pipe';
 import { MyNumberPipe } from './my-number.pipe';
 import { ClientsComponent } from './clients/clients.component';
+import { SupportComponent } from './support/support.component';
+import { SupportManageComponent } from './support-manage/support-manage.component';
 
 @NgModule({
     declarations: [
@@ -34,11 +36,14 @@ import { ClientsComponent } from './clients/clients.component';
         BrightnessComponent,
         SearchPipe,
         MyNumberPipe,
-        ClientsComponent
+        ClientsComponent,
+        SupportComponent,
+        SupportManageComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         RouterModule.forRoot(routes),
     ],
