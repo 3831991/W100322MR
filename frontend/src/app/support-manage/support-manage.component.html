@@ -1,4 +1,4 @@
-<h1>ניהול פניות <small>({{ support.length }})</small></h1>
+<h1>ניהול פניות {{ isStatusDone ? 'סגורות' : 'פתוחות' }} <small>({{ support.length }})</small></h1>
 
 <p *ngIf="!support.length">אין פניות שירות</p>
 
@@ -25,7 +25,8 @@
             <td>{{ s.content }}</td>
 
             <td>
-                <button (click)="complete(s)">טופל</button>
+                <button *ngIf="!isStatusDone" (click)="complete(s)">טופל</button>
+                <button *ngIf="isStatusDone" (click)="undo(s)">ביטול</button>
                 <button class="remove" (click)="remove(s)">x</button>
             </td>
         </tr>

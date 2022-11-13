@@ -21,6 +21,8 @@ import { MyNumberPipe } from './my-number.pipe';
 import { ClientsComponent } from './clients/clients.component';
 import { SupportComponent } from './support/support.component';
 import { SupportManageComponent } from './support-manage/support-manage.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,9 @@ import { SupportManageComponent } from './support-manage/support-manage.componen
         MyNumberPipe,
         ClientsComponent,
         SupportComponent,
-        SupportManageComponent
+        SupportManageComponent,
+        LoginComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserModule,

@@ -8,6 +8,9 @@ import { Client } from './clients/clients.entity';
 import { SupportController } from './support/support.controller';
 import { SupportService } from './support/support.service';
 import { Support } from './support/support.entity';
+import { LoginController } from './login/login.controller';
+import { LoginService } from './login/login.service';
+import { User } from './login/login.entity';
 
 @Module({
     imports: [
@@ -24,17 +27,19 @@ import { Support } from './support/support.entity';
             synchronize: true,
             logging: true,
         }),
-        TypeOrmModule.forFeature([Client, Support])
+        TypeOrmModule.forFeature([Client, Support, User])
     ],
     controllers: [
         AppController,
         ClientsController,
         SupportController,
+        LoginController,
     ],
     providers: [
         AppService,
         ClientsService,
         SupportService,
+        LoginService,
     ],
 })
 export class AppModule { }

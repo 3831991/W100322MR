@@ -10,6 +10,7 @@ import { Support } from '../support/support.interface';
 })
 export class SupportManageComponent implements OnInit {
     support: Support[] = [];
+    isStatusDone: boolean;
 
     remove(item: Support) {
         if (!confirm("האם למחוק את הפנייה?")) {
@@ -35,16 +36,32 @@ export class SupportManageComponent implements OnInit {
         });
     }
 
+    undo(item: Support) {
+        if (!confirm("האם לפתוח את הפנייה בשנית?")) {
+            return;
+        }
+
+        const sub = this.http.put<void>(`http://localhost:3000/support/undo`, item).subscribe(() => {
+            const i = this.support.findIndex(x => x.id == item.id);
+            this.support.splice(i, 1);
+            sub.unsubscribe();
+        });
+    }
+
     constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.route.params.subscribe(ev => {
             if (ev['status'] === 'completed') {
+                this.isStatusDone = true;
+
                 const sub = this.http.get<Support[]>("http://localhost:3000/support/completed").subscribe(data => {
                     this.support = data;
                     sub.unsubscribe();
                 });
             } else {
+                this.isStatusDone = false;
+
                 const sub = this.http.get<Support[]>("http://localhost:3000/support/opened").subscribe(data => {
                     this.support = data;
                     sub.unsubscribe();

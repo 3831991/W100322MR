@@ -21,6 +21,8 @@ export class NavbarComponent implements OnInit {
         { route: '/support', title: 'שירות לקוחות' },
         { route: '/support-manage/opened', title: 'פניות פתוחות' },
         { route: '/support-manage/completed', title: 'פניות סגורות' },
+        { route: '/login', title: 'התחברות' },
+        { route: '/register', title: 'הרשמה' },
     ];
 
     constructor(private router: Router) {
