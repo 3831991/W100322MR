@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
         const sub = this.http.post<User>("http://localhost:3000/register", this.form.value).subscribe(() => {
             this.utility.alert("המשתמש נוסף בהצלחה!");
             sub.unsubscribe();
-            this.router.navigate(['']);
+            this.router.navigate(['login']);
         });
     }
 

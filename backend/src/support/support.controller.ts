@@ -24,16 +24,19 @@ export class SupportController {
     }
 
     @Put('complete')
+    @UseGuards(new AuthGuard())
     async complete(@Body() item: Support) {
         return await this.supportService.complete(item.id);
     }
 
     @Put('undo')
+    @UseGuards(new AuthGuard())
     async undo(@Body() item: Support) {
         return await this.supportService.undo(item.id);
     }
 
     @Delete(':id')
+    @UseGuards(new AuthGuard())
     async delete(@Param('id', new ParseIntPipe()) supportId: number) {
         return await this.supportService.removeSupport(supportId);
     }

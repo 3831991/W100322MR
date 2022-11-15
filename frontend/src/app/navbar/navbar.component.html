@@ -1,3 +1,5 @@
 <nav>
-    <a *ngFor="let x of menu" [class.active]="active == x.route" [routerLink]="x.route">{{ x.title }}</a>
+    <a *ngFor="let x of menu" [class.active]="active == x.route" [routerLink]="x.route" [hidden]="x.isConnected && !utility.user">
+        {{ x.title }}
+    </a>
 </nav>

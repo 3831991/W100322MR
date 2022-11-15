@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Client } from './clients/clients.interface';
+import { UserLoggedin } from './app.component';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UtilityService {
+    user: UserLoggedin | undefined;
     isAlertActived: boolean;
     alertText: string;
 

@@ -1,4 +1,12 @@
-<h1>{{ user ? user.fullName : 'אורח' }} ברוך הבא!</h1>
+<h1>{{ utility.user ? utility.user.fullName : 'אורח' }} ברוך הבא!</h1>
+
+<p *ngIf="!utility.user">
+    <a routerLink="login">התחבר</a> | <a routerLink="register">הרשם</a>
+</p>
+
+<p *ngIf="utility.user">
+    <a (click)="logout()">התנתק</a>
+</p>
 
 <app-navbar></app-navbar>
 

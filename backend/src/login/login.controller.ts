@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req } from "@nestjs/common";
+import { Request } from "express";
 import { SESSION } from "../app.controller";
 import { AppService } from "../app.service";
 import { Register } from "./login.interface";
@@ -19,6 +20,13 @@ export class LoginController {
                 message: 'המשתמש לא מחובר',
             };
         }
+    }
+
+    @Get('logout')
+    logout(@Req() req: Request) {
+        req.session.destroy((err) => {
+            console.log(err);
+        });
     }
 
     @Post('login')

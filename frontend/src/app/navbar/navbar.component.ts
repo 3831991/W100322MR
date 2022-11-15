@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { UtilityService } from '../utility.service';
 import { Menu } from './navbar.interface';
 
 @Component({
@@ -19,18 +20,15 @@ export class NavbarComponent implements OnInit {
         { route: '/brightness', title: 'נגישות' },
         { route: '/clients', title: 'לקוחות' },
         { route: '/support', title: 'שירות לקוחות' },
-        { route: '/support-manage/opened', title: 'פניות פתוחות' },
-        { route: '/support-manage/completed', title: 'פניות סגורות' },
-        { route: '/login', title: 'התחברות' },
-        { route: '/register', title: 'הרשמה' },
+        { route: '/support-manage/opened', title: 'פניות פתוחות', isConnected: true },
+        { route: '/support-manage/completed', title: 'פניות סגורות', isConnected: true },
     ];
 
-    constructor(private router: Router) {
+    constructor(private router: Router, public utility: UtilityService) {
 
         this.router.events.subscribe(ev => {
             if (ev instanceof NavigationStart) {
                 this.active = ev.url;
-                
             }
         });
 

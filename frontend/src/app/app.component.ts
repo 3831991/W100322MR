@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UtilityService } from './utility.service';
 
 @Component({
@@ -8,9 +9,15 @@ import { UtilityService } from './utility.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    user: UserLoggedin;
+    logout() {
+        const sub = this.http.get<void>("http://localhost:3000/logout", { withCredentials: true }).subscribe(() => {
+            this.utility.user = undefined;
+            sub.unsubscribe();
+            this.router.navigate(['']);
+        });
+    }
 
-    constructor(private utility: UtilityService, private http: HttpClient) {}
+    constructor(public utility: UtilityService, private http: HttpClient, private router: Router) {}
 
     ngOnInit() {
         this.utility.setGlobalStyling();
@@ -19,7 +26,7 @@ export class AppComponent {
             if (data.status === 'error') {
                 console.log(data.message);
             } else if (data.status === 'loggedin') {
-                this.user = data.user;
+                this.utility.user = data.user;
             }
 
             sub.unsubscribe();
@@ -35,6 +42,6 @@ export interface UserLoggedin {
 
 export interface UserStatus {
     status: 'loggedin' | 'error';
-    user: UserLoggedin;
+    user?: UserLoggedin;
     message?: string;
 }

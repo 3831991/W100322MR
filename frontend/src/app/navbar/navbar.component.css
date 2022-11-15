@@ -18,3 +18,7 @@ a.active {
 a:hover {
     background-color: #ffffff56;
 }
+
+a[hidden] {
+    display: none;
+}
