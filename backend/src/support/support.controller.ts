@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
+import { AuthGuard } from "../auth.guard";
 import { Support } from "./support.entity";
 import { SupportService } from "./support.service";
 
@@ -6,11 +7,13 @@ import { SupportService } from "./support.service";
 export class SupportController {
 
     @Get('opened')
+    @UseGuards(new AuthGuard())
     async getSupport() {
         return await this.supportService.getOppened();
     }
 
     @Get('completed')
+    @UseGuards(new AuthGuard())
     async getCompleted() {
         return await this.supportService.getCompleted();
     }

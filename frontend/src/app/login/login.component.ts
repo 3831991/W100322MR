@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     });
 
     send() {
-        const sub = this.http.post<User>("http://localhost:3000/login", this.form.value).subscribe(() => {
+        const sub = this.http.post<User>("http://localhost:3000/login", this.form.value, { withCredentials: true }).subscribe(() => {
             this.utility.alert("ההתחברות בוצעה בהצלחה!");
             sub.unsubscribe();
             this.router.navigate(['']);

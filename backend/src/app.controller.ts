@@ -1,9 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
+import { All, Controller, Get, Next, Session } from '@nestjs/common';
+import { NextFunction } from 'express';
 import { AppService } from './app.service';
+
+export let SESSION: Record<string, any>;
 
 @Controller()
 export class AppController {
     constructor(private readonly appService: AppService) { }
+
+    @All('*')
+    async proxyRequest(@Next() next: NextFunction, @Session() session: Record<string, any>) {
+        SESSION = session;
+        console.log(session);
+        next();
+    }
 
     @Get()
     getHello(): string {

@@ -17,7 +17,7 @@ export class SupportManageComponent implements OnInit {
             return;
         }
 
-        const sub = this.http.delete<void>(`http://localhost:3000/support/${item.id}`).subscribe(() => {
+        const sub = this.http.delete<void>(`http://localhost:3000/support/${item.id}`, { withCredentials: true }).subscribe(() => {
             const i = this.support.findIndex(x => x.id == item.id);
             this.support.splice(i, 1);
             sub.unsubscribe();
@@ -29,7 +29,7 @@ export class SupportManageComponent implements OnInit {
             return;
         }
 
-        const sub = this.http.put<void>(`http://localhost:3000/support/complete`, item).subscribe(() => {
+        const sub = this.http.put<void>(`http://localhost:3000/support/complete`, item, { withCredentials: true }).subscribe(() => {
             const i = this.support.findIndex(x => x.id == item.id);
             this.support.splice(i, 1);
             sub.unsubscribe();
@@ -41,7 +41,7 @@ export class SupportManageComponent implements OnInit {
             return;
         }
 
-        const sub = this.http.put<void>(`http://localhost:3000/support/undo`, item).subscribe(() => {
+        const sub = this.http.put<void>(`http://localhost:3000/support/undo`, item, { withCredentials: true }).subscribe(() => {
             const i = this.support.findIndex(x => x.id == item.id);
             this.support.splice(i, 1);
             sub.unsubscribe();
@@ -55,14 +55,14 @@ export class SupportManageComponent implements OnInit {
             if (ev['status'] === 'completed') {
                 this.isStatusDone = true;
 
-                const sub = this.http.get<Support[]>("http://localhost:3000/support/completed").subscribe(data => {
+                const sub = this.http.get<Support[]>("http://localhost:3000/support/completed", { withCredentials: true }).subscribe(data => {
                     this.support = data;
                     sub.unsubscribe();
                 });
             } else {
                 this.isStatusDone = false;
 
-                const sub = this.http.get<Support[]>("http://localhost:3000/support/opened").subscribe(data => {
+                const sub = this.http.get<Support[]>("http://localhost:3000/support/opened", { withCredentials: true }).subscribe(data => {
                     this.support = data;
                     sub.unsubscribe();
                 });

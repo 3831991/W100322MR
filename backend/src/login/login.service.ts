@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
+import { SESSION } from "../app.controller";
 import { User } from "./login.entity";
 import { Register } from "./login.interface";
 
@@ -22,6 +23,8 @@ export class LoginService {
         if (!(await user.comparePassword(password))) {
             throw new HttpException("שם משתמש או סיסמה שגויים", HttpStatus.BAD_REQUEST);
         }
+
+        SESSION.user = user;
 
         return user;
     }
