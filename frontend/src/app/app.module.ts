@@ -24,6 +24,7 @@ import { SupportManageComponent } from './support-manage/support-manage.componen
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpService } from './http.service';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { HttpService } from './http.service';
         SupportComponent,
         SupportManageComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        GalleryComponent
     ],
     imports: [
         BrowserModule,

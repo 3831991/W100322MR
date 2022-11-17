@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { BrightnessComponent } from "./brightness/brightness.component";
 import { ClientsComponent } from "./clients/clients.component";
 import { ContactComponent } from "./contact/contact.component";
+import { GalleryComponent } from "./gallery/gallery.component";
 import { HomeComponent } from "./home/home.component";
 import { ListComponent } from "./list/list.component";
 import { LoginComponent } from "./login/login.component";
@@ -21,4 +22,5 @@ export const routes: Routes = [
     { path: 'support-manage/:status', component: SupportManageComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'gallery', component: GalleryComponent },
 ];

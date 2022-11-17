@@ -13,15 +13,16 @@ export class NavbarComponent implements OnInit {
     active: string;
 
     menu: Menu[] = [
-        { route: '/', title: 'בית' },
-        { route: '/list', title: 'רשימה' },
-        { route: '/users', title: 'משתמשים' },
-        { route: '/contact', title: 'צור קשר' },
-        { route: '/brightness', title: 'נגישות' },
-        { route: '/clients', title: 'לקוחות' },
-        { route: '/support', title: 'שירות לקוחות' },
-        { route: '/support-manage/opened', title: 'פניות פתוחות', isConnected: true },
-        { route: '/support-manage/completed', title: 'פניות סגורות', isConnected: true },
+        { route: '/', title: 'בית', icon: 'home' },
+        { route: '/list', title: 'רשימה', icon: 'list' },
+        { route: '/gallery', title: 'גלרייה', icon: 'image' },
+        { route: '/users', title: 'משתמשים', icon: 'users' },
+        { route: '/contact', title: 'צור קשר', icon: 'envelope' },
+        { route: '/brightness', title: 'נגישות', icon: 'wheelchair' },
+        { route: '/clients', title: 'לקוחות', icon: 'users' },
+        { route: '/support', title: 'שירות לקוחות', icon: 'phone' },
+        { route: '/support-manage/opened', title: 'פניות פתוחות', isConnected: true, icon: 'american-sign-language-interpreting' },
+        { route: '/support-manage/completed', title: 'פניות סגורות', isConnected: true, icon: 'circle' },
     ];
 
     constructor(private router: Router, public utility: UtilityService) {
