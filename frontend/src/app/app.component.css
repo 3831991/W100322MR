@@ -3,3 +3,47 @@ a {
     cursor: pointer;
     color: blue;
 }
+
+.loaderFrame {
+    position: fixed;
+    background: #0000009c;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+}
+
+.loader {
+    border: 16px solid #f3f3f38a;
+    border-radius: 50%;
+    border-top: 16px solid #8a079e;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+    margin: auto;
+}
+
+
+/* Safari */
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

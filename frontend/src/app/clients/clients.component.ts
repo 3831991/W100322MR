@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Client } from './clients.interface';
+import { HttpService } from '../http.service';
 
 @Component({
     selector: 'app-clients',
@@ -26,7 +26,7 @@ export class ClientsComponent implements OnInit {
             return;
         }
 
-        const sub = this.http.delete<void>(`http://localhost:3000/clients/${client.id}`).subscribe(() => {
+        const sub = this.http.delete<void>(`clients/${client.id}`).subscribe(() => {
             const i = this.clients.findIndex(x => x.id === client.id);
             this.clients.splice(i, 1);
             sub.unsubscribe();
@@ -48,7 +48,7 @@ export class ClientsComponent implements OnInit {
             return;
         }
 
-        const sub = this.http.post<Client>("http://localhost:3000/clients", this.newClient).subscribe(data => {
+        const sub = this.http.post<Client>("clients", this.newClient).subscribe(data => {
             this.clients.unshift(data);
 
             this.newClient = {
@@ -67,16 +67,16 @@ export class ClientsComponent implements OnInit {
     }
 
     update(client: Client) {
-        const sub = this.http.put<void>("http://localhost:3000/clients", client).subscribe(() => {
+        const sub = this.http.put<void>("clients", client).subscribe(() => {
             client.isEditState = false;
             sub.unsubscribe();
         });
     }
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpService) { }
 
     ngOnInit() {
-        const sub = this.http.get<Client[]>("http://localhost:3000/clients").subscribe(data => {
+        const sub = this.http.get<Client[]>("clients").subscribe(data => {
             this.clients = data;
             sub.unsubscribe();
         });

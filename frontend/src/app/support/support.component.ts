@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpService } from '../http.service';
 import { UtilityService } from '../utility.service';
 
 @Component({
@@ -33,14 +33,14 @@ export class SupportComponent implements OnInit {
     });
 
     send() {
-        const sub = this.http.post<void>("http://localhost:3000/support", this.form.value).subscribe(() => {
+        const sub = this.http.post<void>("support", this.form.value).subscribe(() => {
             this.utility.alert("הטופס נשלח בהצלחה!");
             sub.unsubscribe();
             this.router.navigate(['support-manage', 'opened']);
         });
     }
 
-    constructor(private http: HttpClient, private utility: UtilityService, private router: Router) { }
+    constructor(private http: HttpService, private utility: UtilityService, private router: Router) { }
 
     ngOnInit() {
         console.log(this.form)

@@ -22,7 +22,7 @@ export class RangeComponent implements OnInit {
         this.valueChange.emit(this.value);
     }
 
-    constructor() { }
+    constructor() {}
 
     ngOnInit() {
     }

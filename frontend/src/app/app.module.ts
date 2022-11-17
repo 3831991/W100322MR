@@ -23,6 +23,7 @@ import { SupportComponent } from './support/support.component';
 import { SupportManageComponent } from './support-manage/support-manage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { HttpService } from './http.service';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import { RegisterComponent } from './register/register.component';
         RouterModule.forRoot(routes),
     ],
     providers: [
-        UtilityService,
+        UtilityService, // זה שירות שלנו
+        HttpService, // זה שירות שלנו
     ],
     bootstrap: [AppComponent]
 })

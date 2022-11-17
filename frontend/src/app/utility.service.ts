@@ -6,8 +6,16 @@ import { UserLoggedin } from './app.component';
 })
 export class UtilityService {
     user: UserLoggedin | undefined;
+    
     isAlertActived: boolean;
     alertText: string;
+
+    isLoader: boolean;
+
+    loader(isStart: boolean) {
+        this.isLoader = isStart;
+        document.body.style.overflow = isStart ? 'hidden' : 'initial';
+    }
 
     alert(txt: string) {
         this.alertText = txt;

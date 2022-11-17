@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpService } from './http.service';
 import { UtilityService } from './utility.service';
 
 @Component({
@@ -10,19 +10,19 @@ import { UtilityService } from './utility.service';
 })
 export class AppComponent {
     logout() {
-        const sub = this.http.get<void>("http://localhost:3000/logout", { withCredentials: true }).subscribe(() => {
+        const sub = this.http.get<void>("logout").subscribe(() => {
             this.utility.user = undefined;
             sub.unsubscribe();
             this.router.navigate(['']);
         });
     }
 
-    constructor(public utility: UtilityService, private http: HttpClient, private router: Router) {}
+    constructor(public utility: UtilityService, private http: HttpService, private router: Router) {}
 
     ngOnInit() {
         this.utility.setGlobalStyling();
 
-        const sub = this.http.get<UserStatus>("http://localhost:3000/login-status", { withCredentials: true }).subscribe(data => {
+        const sub = this.http.get<UserStatus>("login-status").subscribe(data => {
             if (data.status === 'error') {
                 console.log(data.message);
             } else if (data.status === 'loggedin') {

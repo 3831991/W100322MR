@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLoggedin } from '../app.component';
+import { HttpService } from '../http.service';
 import { UtilityService } from '../utility.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     });
 
     send() {
-        const sub = this.http.post<UserLoggedin>("http://localhost:3000/login", this.form.value, { withCredentials: true })
+        const sub = this.http.post<UserLoggedin>("login", this.form.value)
         .subscribe(data => {
             this.utility.user = data;
             this.utility.alert("ההתחברות בוצעה בהצלחה!");
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    constructor(private http: HttpClient, private utility: UtilityService, private router: Router) { }
+    constructor(private http: HttpService, private utility: UtilityService, private router: Router) { }
 
     ngOnInit() {
     }

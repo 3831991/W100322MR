@@ -12,7 +12,8 @@ export class AppController {
     async proxyRequest(@Next() next: NextFunction, @Session() session: Record<string, any>) {
         SESSION = session;
         console.log(session);
-        next();
+
+        setTimeout(next, 2 * 1000);
     }
 
     @Get()
