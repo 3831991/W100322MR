@@ -1,11 +1,11 @@
 # compiled output
-/backend/dist
-/backend/node_modules
+hello/backend/dist
+hello/backend/node_modules
 
 # compiled output
-frontend/dist
-frontend/tmp
-frontend/out-tsc
+hello/frontend/dist
+hello/frontend/tmp
+hello/frontend/out-tsc
 
 # dependencies
 /node_modules
