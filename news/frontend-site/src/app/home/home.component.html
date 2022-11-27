@@ -1,0 +1,9 @@
+<div class="w3-row-padding">
+    <div *ngFor="let item of data" class="w3-third w3-container w3-margin-bottom">
+        <img [src]="'http://localhost:3000/articles/image/' + item.imgId" [alt]="item.title" style="width:100%" class="w3-hover-opacity">
+        <div class="w3-container w3-white">
+            <p><b>{{ item.title }}</b></p>
+            <p>{{ item.subTitle }}</p>
+        </div>
+    </div>
+</div>

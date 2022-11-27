@@ -1,4 +1,5 @@
 const con = require("../sqlConnect");
+const path = require('path');
 
 /** @type {import("express").RequestHandler} */
 async function getArticles(req, res) {
@@ -16,4 +17,9 @@ async function addArticles(req, res) {
 
 }
 
-module.exports = { getArticles, addArticles };
+/** @type {import("express").RequestHandler} */
+async function getImage(req, res) {
+    res.sendFile(path.resolve(__dirname + "/../files/" + req.params.id + '.jpg'));
+}
+
+module.exports = { getArticles, addArticles, getImage };
