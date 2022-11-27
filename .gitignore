@@ -7,6 +7,8 @@ hello/frontend/dist
 hello/frontend/tmp
 hello/frontend/out-tsc
 
+news/backend/node_modules
+
 # dependencies
 /node_modules
 
