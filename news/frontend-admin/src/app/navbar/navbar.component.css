@@ -1,0 +1,24 @@
+nav {
+    background: teal;
+    color: white;
+}
+
+a {
+    padding: 16px;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+a.active {
+    background-color: #ffffff47;
+}
+
+a:hover {
+    background-color: #ffffff56;
+}
+
+a[hidden] {
+    display: none;
+}

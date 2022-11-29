@@ -1,0 +1,29 @@
+<h2>ניהול כתבות</h2>
+
+<button>כתבה חדשה <i class="fa fa-plus"></i></button>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>תאריך</th>
+            <th>כותרת</th>
+            <th>שם הכתב</th>
+            <th>זמן פרסום</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let a of articles; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ a.createdTime | date : 'dd/MM/yy' }}</td>
+            <td>{{ a.title }}</td>
+            <td>{{ a.reporterId }}</td>
+            <td>{{ a.publishTime | date : 'dd/MM/yy hh:mm' }}</td>
+            <td>
+                <button class="action edit" (click)="edit(a)"><i class="fa fa-edit"></i></button>
+                <button class="action remove" (click)="remove(a)"><i class="fa fa-remove"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

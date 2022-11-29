@@ -1,0 +1,29 @@
+<form *ngIf="form" class="frame" [formGroup]="form">
+    <h2>עריכת כתבה</h2>
+
+    <div class="field">
+        <label>כותרת:</label>
+        <input type="text" formControlName="title">
+    </div>
+
+    <div class="field">
+        <label>כותרת משנה:</label>
+        <textarea formControlName="subTitle" cols="30" rows="4"></textarea>
+    </div>
+
+    <div class="field">
+        <label>תוכן הכתבה:</label>
+        <textarea formControlName="body" cols="30" rows="10"></textarea>
+    </div>
+
+    <div class="field">
+        <label>זמן פרסום:</label>
+        <input type="date" formControlName="publishTime">
+    </div>
+
+    <!-- בהמשך צריך להתייחס גם לשדות האלו: imgId, reporterId, categoryId -->
+
+    <div class="field">
+        <button (click)="send()" [disabled]="!form.valid"><i class="fa fa-save"></i> שמור</button>
+    </div>
+</form>

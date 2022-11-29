@@ -1,0 +1,65 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #037d9b;
+    color: white;
+}
+
+th,
+td {
+    padding: 6px 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #ccc;
+}
+
+td:last-child>span {
+    transition: 0.3s;
+    display: inline-block;
+    cursor: pointer;
+}
+
+tr td:last-child {
+    text-align: left;
+}
+
+.action {
+    border-radius: 50%;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+    height: 28px;
+    width: 28px;
+    padding: 0;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.action:hover {
+    color: white;
+}
+
+.edit {
+    color: blue;
+}
+
+.remove {
+    color: red;
+}
+
+.edit:hover {
+    background-color: blue;
+}
+
+.remove:hover {
+    background-color: red;
+}
+
+.action:active {
+    scale: 1.2;
+}

@@ -23,5 +23,7 @@ app.get('/', (req, res) => {
 
 const articles = require("./handelers/articles");
 app.get("/articles", articles.getArticles);
+app.get("/article/:id", articles.getArticle);
 app.post("/articles", articles.addArticles);
+app.put("/article", articles.updateArticle);
 app.get("/articles/image/:id", articles.getImage);
