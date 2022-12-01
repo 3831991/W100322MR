@@ -49,7 +49,6 @@ export async function getArticle(req, res) {
 
 export async function addArticle(req, res) {
     const imgId = await saveImage(req.body.image, req.body.imageName);
-    console.log(imgId);
 
     con.query("INSERT INTO `articles`(`createdTime`, `userId`, `title`, `subTitle`, `body`, `imgId`, `publishTime`, `reporterId`, `categoryId`) VALUES (CURRENT_TIME,0,?,?,?,?,?,0,0)", [req.body.title, req.body.subTitle, req.body.body, imgId || 0, req.body.publishTime], (err, result) => {
         if (err) {
