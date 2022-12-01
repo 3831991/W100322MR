@@ -3,24 +3,24 @@ import path from 'path';
 import fs from 'fs';
 
 function saveImage(data, fileName) {
-    let imgId = 0;
+    return new Promise((resolve, reject) => {
+        con.query("INSERT INTO `images`(`name`) VALUES (?)", [fileName], (err, result) => {
+            if (err) {
+                throw err;
+            }
 
-    con.query("INSERT INTO `images`(`name`) VALUES (?)", [fileName], (err, result) => {
-        if (err) {
-            throw err;
-        }
+            const imgId = result.insertId;
+            const exp = fileName.split('.').pop();
 
-        imgId = result.insertId;
-        const exp = fileName.split('.').pop();
+            const base64Data = data.replace(/^data:image\/[a-z]+;base64,/, "");
 
-        const base64Data = data.replace(/^data:image\/[a-z]+;base64,/, "");
+            fs.writeFile(__dirname + `/../files/${imgId}.${exp}`, base64Data, 'base64', (err) => {
 
-        fs.writeFile(__dirname + `/../files/${imgId}.${exp}`, base64Data, 'base64', (err) => {
+            });
 
+            resolve(imgId);
         });
     });
-
-    return imgId;
 }
 
 export async function getArticles(req, res) {
@@ -48,9 +48,10 @@ export async function getArticle(req, res) {
 }
 
 export async function addArticle(req, res) {
-    const imgId = saveImage(req.body.image, req.body.imageName);
+    const imgId = await saveImage(req.body.image, req.body.imageName);
+    console.log(imgId);
 
-    con.query("INSERT INTO `articles`(`createdTime`, `userId`, `title`, `subTitle`, `body`, `imgId`, `publishTime`, `reporterId`, `categoryId`) VALUES (CURRENT_TIME,0,?,?,?,?,?,0,0)", [req.body.title, req.body.subTitle, req.body.body, imgId, req.body.publishTime], (err, result) => {
+    con.query("INSERT INTO `articles`(`createdTime`, `userId`, `title`, `subTitle`, `body`, `imgId`, `publishTime`, `reporterId`, `categoryId`) VALUES (CURRENT_TIME,0,?,?,?,?,?,0,0)", [req.body.title, req.body.subTitle, req.body.body, imgId || 0, req.body.publishTime], (err, result) => {
         if (err) {
             throw err;
         }
