@@ -8,6 +8,7 @@ hello/frontend/tmp
 hello/frontend/out-tsc
 
 news/backend/node_modules
+news/backend/files
 
 # dependencies
 /node_modules

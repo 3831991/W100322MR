@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,8 +15,13 @@ export class ArticleBodyComponent implements OnInit {
     sub: Subscription;
     article: Article;
     form: FormGroup;
+    alternativeImage: string | ArrayBuffer;
+    alternativeImageName: string;
 
-    send() {
+    @ViewChild('imageInput')
+    inputElem: ElementRef<HTMLInputElement>;
+
+    update() {
         for (const k in this.form.value) {
             this.article[k] = this.form.value[k];
         }
@@ -28,7 +33,21 @@ export class ArticleBodyComponent implements OnInit {
             alert("חביבי, הייתה שגיאה!")
         });
     }
-    
+
+    add() {
+        const data = this.form.value;
+
+        if (this.alternativeImage) {
+            data.image = this.alternativeImage;
+            data.imageName = this.alternativeImageName;
+        }
+
+        const sub = this.http.post<Article>("article", data).subscribe(item => {
+            sub.unsubscribe();
+            this.router.navigate(['articles']);
+        });
+    }
+
     buildForm(item: Article) {
         this.form = new FormGroup({
             title: new FormControl(item.title, [
@@ -55,15 +74,52 @@ export class ArticleBodyComponent implements OnInit {
         });
     }
 
+    selectImage() {
+        this.inputElem.nativeElement.click();
+    }
+
+    imageChange() {
+        const files = this.inputElem.nativeElement.files;
+
+        if (files.length) {
+            const reader = new FileReader();
+
+            reader.onload = (ev) => {
+                this.alternativeImage = ev.target.result;
+                this.alternativeImageName = files[0].name;
+            };
+
+            reader.readAsDataURL(files[0]);
+        }
+    }
+
     constructor(private http: HttpService, private route: ActivatedRoute, private date: DatePipe, private router: Router) {
         this.sub = this.route.params.subscribe(data => {
             const id = data['id'];
 
-            const sub = this.http.get<Article>(`article/${id}`).subscribe(data => {
-                this.article = data;
+            if (id) {
+                const sub = this.http.get<Article>(`article/${id}`).subscribe(data => {
+                    this.article = data;
+                    this.buildForm(this.article);
+                    sub.unsubscribe();
+                });
+            } else {
+                this.article = {
+                    id: 0,
+                    createdTime: '',
+                    userId: 0,
+                    title: '',
+                    subTitle: '',
+                    body: '',
+                    publishTime: '',
+                    reporterId: 0,
+                    imgId: 0,
+                    categoryId: 0,
+                    isDeleted: false,
+                };
+
                 this.buildForm(this.article);
-                sub.unsubscribe();
-            });
+            }
         });
     }
 

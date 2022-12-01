@@ -1,5 +1,6 @@
 <form *ngIf="form" class="frame" [formGroup]="form">
-    <h2>עריכת כתבה</h2>
+    <h2 *ngIf="article.id">עריכת כתבה</h2>
+    <h2 *ngIf="!article.id">הוספת כתבה</h2>
 
     <div class="field">
         <label>כותרת:</label>
@@ -21,9 +22,25 @@
         <input type="date" formControlName="publishTime">
     </div>
 
+    <input #imageInput [hidden]="true" type="file" (change)="imageChange()">
+
+    <div *ngIf="article.imgId">
+        <img [src]="'http://localhost:3000/articles/image/' + article.imgId" class="w3-hover-opacity" (click)="selectImage()">
+    </div>
+
+    <div *ngIf="alternativeImage">
+        <h3 *ngIf="article.imgId">תמונה להחלפה</h3>
+        <img [src]="alternativeImage" class="w3-hover-opacity" (click)="selectImage()">
+    </div>
+
+    <div *ngIf="!article.imgId && !alternativeImage" style="width: 50%; padding: 10px;">
+        <button (click)="selectImage()">העלאת תמונה <i class="fa fa-upload"></i></button>
+    </div>
+
     <!-- בהמשך צריך להתייחס גם לשדות האלו: imgId, reporterId, categoryId -->
 
     <div class="field">
-        <button (click)="send()" [disabled]="!form.valid"><i class="fa fa-save"></i> שמור</button>
+        <button *ngIf="article.id" (click)="update()" [disabled]="!form.valid"><i class="fa fa-save"></i> שמור</button>
+        <button *ngIf="!article.id" (click)="add()" [disabled]="!form.valid"><i class="fa fa-plus"></i> הוסף</button>
     </div>
 </form>

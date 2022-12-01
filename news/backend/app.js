@@ -1,6 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-require("./sqlConnect")
+import { getArticles, getArticle, addArticle, updateArticle, getImage, deleteArticle } from './handelers/articles';
+import express from 'express';
+import cors from 'cors';
+import './sqlConnect';
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.use(cors({
     allowedHeaders: 'Content-Type, Accept',
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 
 app.listen(3000, () => {
     console.log('Listen 3000');
@@ -21,9 +22,9 @@ app.get('/', (req, res) => {
     res.send("Hello World");
 });
 
-const articles = require("./handelers/articles");
-app.get("/articles", articles.getArticles);
-app.get("/article/:id", articles.getArticle);
-app.post("/articles", articles.addArticles);
-app.put("/article", articles.updateArticle);
-app.get("/articles/image/:id", articles.getImage);
+app.get("/articles", getArticles);
+app.get("/article/:id", getArticle);
+app.get("/articles/image/:id", getImage);
+app.post("/article", addArticle);
+app.put("/article", updateArticle);
+app.delete("/article/:id", deleteArticle);

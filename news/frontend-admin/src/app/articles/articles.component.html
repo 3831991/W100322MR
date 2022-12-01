@@ -1,6 +1,6 @@
 <h2>ניהול כתבות</h2>
 
-<button>כתבה חדשה <i class="fa fa-plus"></i></button>
+<button routerLink="/article-body">כתבה חדשה <i class="fa fa-plus"></i></button>
 
 <table>
     <thead>
@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let a of articles; let i = index">
+        <tr *ngFor="let a of articles; let i = index" (dblclick)="edit(a)">
             <td>{{ i + 1 }}</td>
             <td>{{ a.createdTime | date : 'dd/MM/yy' }}</td>
             <td>{{ a.title }}</td>

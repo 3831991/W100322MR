@@ -7,6 +7,7 @@ import { HomeComponent } from "./home/home.component";
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'articles', component: ArticlesComponent },
+    { path: 'article-body', component: ArticleBodyComponent },
     { path: 'article-body/:id', component: ArticleBodyComponent },
     { path: 'categories', component: CategoriesComponent },
 ];

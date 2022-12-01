@@ -56,3 +56,13 @@ button:hover {
 input.ng-invalid.ng-dirty {
     border: 1px solid red;
 }
+
+img {
+    width: 95%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 8px auto;
+    box-shadow: 0 0 3px black;
+    padding: 0;
+    display: block;
+}
