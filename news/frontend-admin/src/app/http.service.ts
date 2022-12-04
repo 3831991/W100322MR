@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HttpService {
-    private readonly url = 'http://localhost:3000';
+    private readonly url = environment.url;
     private readonly options = { withCredentials: true };
 
     get<T>(route: string) {

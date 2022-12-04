@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    url: 'http://api.kuku.com',
 };
