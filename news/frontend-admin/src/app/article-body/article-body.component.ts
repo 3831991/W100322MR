@@ -26,6 +26,11 @@ export class ArticleBodyComponent implements OnInit {
             this.article[k] = this.form.value[k];
         }
 
+        if (this.alternativeImage) {
+            this.article.image = this.alternativeImage;
+            this.article.imageName = this.alternativeImageName;
+        }
+
         const sub = this.http.put<void>("article", this.article).subscribe(() => {
             sub.unsubscribe();
             this.router.navigate(['articles']);
@@ -40,6 +45,10 @@ export class ArticleBodyComponent implements OnInit {
         if (this.alternativeImage) {
             data.image = this.alternativeImage;
             data.imageName = this.alternativeImageName;
+        }
+
+        if (!data.publishTime) {
+            data.publishTime = this.date.transform(new Date(), 'yyyy-MM-dd');
         }
 
         const sub = this.http.post<Article>("article", data).subscribe(item => {

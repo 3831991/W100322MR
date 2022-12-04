@@ -10,4 +10,6 @@ export interface Article {
     reporterId: number;
     categoryId: number;
     isDeleted: boolean;
+    image?: any;
+    imageName?: any;
 }

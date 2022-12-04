@@ -48,9 +48,13 @@ export async function getArticle(req, res) {
 }
 
 export async function addArticle(req, res) {
-    const imgId = await saveImage(req.body.image, req.body.imageName);
+    let imgId = 0;
 
-    con.query("INSERT INTO `articles`(`createdTime`, `userId`, `title`, `subTitle`, `body`, `imgId`, `publishTime`, `reporterId`, `categoryId`) VALUES (CURRENT_TIME,0,?,?,?,?,?,0,0)", [req.body.title, req.body.subTitle, req.body.body, imgId || 0, req.body.publishTime], (err, result) => {
+    if (req.body.image && req.body.imageName) {
+        imgId = await saveImage(req.body.image, req.body.imageName);
+    }
+
+    con.query("INSERT INTO `articles`(`createdTime`, `userId`, `title`, `subTitle`, `body`, `imgId`, `publishTime`, `reporterId`, `categoryId`) VALUES (CURRENT_TIME,0,?,?,?,?,?,0,0)", [req.body.title, req.body.subTitle, req.body.body, imgId, req.body.publishTime], (err, result) => {
         if (err) {
             throw err;
         }
@@ -60,7 +64,13 @@ export async function addArticle(req, res) {
 }
 
 export async function updateArticle(req, res) {
-    con.query("UPDATE `articles` SET `title`=?, `subTitle`=?, `body`=?, `imgId`=?, `publishTime`=?, `reporterId`=?, `categoryId`=? WHERE `id` = ?", [req.body.title, req.body.subTitle, req.body.body, req.body.imgId, req.body.publishTime, req.body.reporterId, req.body.categoryId, req.body.id], (err, result) => {
+    let imgId = req.body.imgId;
+
+    if (req.body.image && req.body.imageName) {
+        imgId = await saveImage(req.body.image, req.body.imageName);
+    }
+
+    con.query("UPDATE `articles` SET `title`=?, `subTitle`=?, `body`=?, `imgId`=?, `publishTime`=?, `reporterId`=?, `categoryId`=? WHERE `id` = ?", [req.body.title, req.body.subTitle, req.body.body, imgId, req.body.publishTime, req.body.reporterId, req.body.categoryId, req.body.id], (err, result) => {
         if (err) {
             throw err;
         }
